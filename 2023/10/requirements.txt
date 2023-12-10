@@ -1,0 +1,2 @@
+networkx==3.2.1
+shapely==2.0.2
