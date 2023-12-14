@@ -1,7 +1,10 @@
+import functools
+
 with open("input.txt", "r", encoding="utf8") as f:
-    lines = [(line.split()[0], tuple(map(int, line.split()[1].split(",")))) for line in f.read().splitlines()]
+    lines = [("?".join([line.split()[0]] * 5), tuple(map(int, (line.split()[1].split(",") * 5)))) for line in f.read().splitlines()]
 
 
+@functools.cache
 def get_options(springs, info):
     if len(springs) == 0:
         return len(info) == 0
