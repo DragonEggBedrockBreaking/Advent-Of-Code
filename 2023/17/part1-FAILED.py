@@ -28,11 +28,11 @@ def dijkstra(graph, start, end):
 
 
 def check_restriction(current, neighbour, path):
-    if len(path) >= 2:
-        four = (path[-2], path[-1], current, neighbour)
-        if len(set([node[0] for node in four])) == 1 and tuple(sorted(four, key=lambda node: node[1])) == four:
+    if len(path) >= 3:
+        five = (path[-3], path[-2], path[-1], current, neighbour)
+        if len(set([node[0] for node in five])) == 1 and tuple(sorted(five, key=lambda node: node[1])) == five:
             return False
-        if len(set([node[1] for node in four])) == 1 and tuple(sorted(four, key=lambda node: node[0])) == four:
+        if len(set([node[1] for node in five])) == 1 and tuple(sorted(five, key=lambda node: node[0])) == five:
             return False
     return True
 
@@ -53,5 +53,4 @@ for i, line in enumerate(lines):
             G.add_edge((i, j), (i, j+1), weight=lines[i][j+1])
 
 path = dijkstra(G, (0, 0), (len(lines) - 1, len(lines[0]) - 1))
-print(path)
-print(sum([lines[node[0]][node[1]] for node in path]))
+print(sum([lines[node[0]][node[1]] for node in path])-lines[0][0])
