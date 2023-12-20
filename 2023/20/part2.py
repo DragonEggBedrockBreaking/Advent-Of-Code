@@ -50,10 +50,9 @@ nums = [0, 0, 0, 0]
 count = 0
 while any(not num for num in nums):
     count += 1
-    for i, search in enumerate(master_searches):
-        if charges[master][search]:
-            nums[i] = count
     queue = [("roadcaster", "low")]
     while queue:
+        if (search := queue[0][0]) in master_searches and queue[0][1] == "high":
+            nums[master_searches.index(search)] = count
         pulse(*queue.pop(0))
 print(lcm(*nums))
