@@ -15,6 +15,7 @@ for k1, v1 in type_data.items():
             else:
                 charges[k1][k2] = False
 
+
 def pulse(current, pulse_type):
     for output in main_data[current]:
         if output not in type_data:
