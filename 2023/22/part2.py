@@ -1,5 +1,3 @@
-import copy
-
 with open("input.txt", "r", encoding="utf8") as f:
     lines = f.read().splitlines()
 
@@ -22,12 +20,9 @@ for i, line in enumerate(lines):
 data = dict(sorted(data.items(), key=lambda x: x[1][0][2]))
 
 
-def fall(dictionary, breakout=False):
-    j = 0
+def fall(dictionary):
+    fallen = 0
     for key in dictionary.keys():
-        j += 1
-        if not breakout:
-            print(j)
         value = dictionary[key]
         if any(v[2] == 1 for v in value):
             continue
@@ -47,17 +42,14 @@ def fall(dictionary, breakout=False):
             drop_level += 1
         for i in range(len(value)):
             dictionary[key][i][2] -= drop_level
-    return dictionary
+        fallen += drop_level > 0
+    return dictionary, fallen
 
 
-j = 0
-data = fall(data)
+data, _ = fall(data)
 can_be_disintegrated = 0
 for k, v in data.items():
-    j += 1
-    print(j)
-    new_data = copy.deepcopy(data)
+    new_data = data.copy()
     del new_data[k]
-    new_new_data = fall(copy.deepcopy(new_data), True)
-    can_be_disintegrated += len(set(tuple([tuple([tuple(x) for x in v]) for v in new_new_data.values()])) - (set(tuple([tuple([tuple(x) for x in v]) for v in new_data.values()])) & set(tuple([tuple([tuple(x) for x in v]) for v in new_new_data.values()]))))
+    can_be_disintegrated += fall(new_data)[1]
 print(can_be_disintegrated)
