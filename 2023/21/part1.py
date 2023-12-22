@@ -20,7 +20,7 @@ def traverse(x, y, depth=1):
         queue.append((x-1, y, depth+1))
     if x < len(lines)-1 and lines[x+1][y] != "#":
         queue.append((x+1, y, depth+1))
-    if y > 0 and lines[x][y-1] == ".":
+    if y > 0 and lines[x][y-1] != "#":
         queue.append((x, y-1, depth+1))
     if y < len(lines[0])-1 and lines[x][y+1] != "#":
         queue.append((x, y+1, depth+1))
