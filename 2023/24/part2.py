@@ -16,6 +16,8 @@ s = Solver()
 i = 0
 for (pos, vel) in lines:
     i += 1
+    if i == 4:
+        break
     t = Int("t" + str(i))
     s.add(pos[0] + vel[0] * t == x + xv * t)
     s.add(pos[1] + vel[1] * t == y + yv * t)
