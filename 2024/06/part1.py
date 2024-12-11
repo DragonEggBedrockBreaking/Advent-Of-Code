@@ -52,5 +52,6 @@ def part1():
     print(len(indices))
     return indices
 
-part1()
+if __name__ == "__main__":
+    part1()
 

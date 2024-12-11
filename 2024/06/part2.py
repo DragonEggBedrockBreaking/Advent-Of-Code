@@ -19,38 +19,39 @@ def simulate(ls):
                     if (direction == "up" and i == 0) or (direction == "down" and i == last_v_index) or (direction == "left" and j == 0) or (direction == "right" and j == last_h_index):
                         return False
                     else:
-                        if direction == "up":
-                            if ls[i-1][j] == "#":
-                                direction = "right"
-                            else:
-                                ls[i][j] = ls[i][j] + "U"
-                                if "U" in ls[i-1][j] or ("R" in ls[i-1][j] and ls[i-2][j] == "#"):
-                                    return True
-                                ls[i-1][j] = ls[i-1][j] + "^"
-                        elif direction == "right":
-                            if ls[i][j+1] == "#":
-                                direction = "down"
-                            else:
-                                ls[i][j] = ls[i][j] + "R"
-                                if "R" in ls[i][j+1] or ("D" in ls[i][j+1] and ls[i][j+2] == "#"):
-                                    return True
-                                ls[i][j+1] = ls[i][j+1] + "^"
-                        elif direction == "down":
-                            if ls[i+1][j] == "#":
-                                direction = "left"
-                            else:
-                                ls[i][j] = ls[i][j] + "D"
-                                if "D" in ls[i+1][j] or ("L" in ls[i+1][j] and ls[i+2][j] == "#"):
-                                    return True
-                                ls[i+1][j] = ls[i+1][j] + "^"
-                        elif direction == "left":
-                            if ls[i][j-1] == "#":
-                                direction = "up"
-                            else:
-                                ls[i][j] = ls[i][j] + "L"
-                                if "L" in ls[i][j-1] or ("U" in ls[i][j-1] and ls[i][j-2] == "#"):
-                                    return True
-                                ls[i][j-1] = ls[i][j-1] + "^"
+                        match direction:
+                            case "up":
+                                if ls[i-1][j] == "#":
+                                    direction = "right"
+                                else:
+                                    ls[i][j] = ls[i][j] + "U"
+                                    if "U" in ls[i-1][j] or ("R" in ls[i-1][j] and ls[i-2][j] == "#"):
+                                        return True
+                                    ls[i-1][j] = ls[i-1][j] + "^"
+                            case "right":
+                                if ls[i][j+1] == "#":
+                                    direction = "down"
+                                else:
+                                    ls[i][j] = ls[i][j] + "R"
+                                    if "R" in ls[i][j+1] or ("D" in ls[i][j+1] and ls[i][j+2] == "#"):
+                                        return True
+                                    ls[i][j+1] = ls[i][j+1] + "^"
+                            case "down":
+                                if ls[i+1][j] == "#":
+                                    direction = "left"
+                                else:
+                                    ls[i][j] = ls[i][j] + "D"
+                                    if "D" in ls[i+1][j] or ("L" in ls[i+1][j] and ls[i+2][j] == "#"):
+                                        return True
+                                    ls[i+1][j] = ls[i+1][j] + "^"
+                            case "left":
+                                if ls[i][j-1] == "#":
+                                    direction = "up"
+                                else:
+                                    ls[i][j] = ls[i][j] + "L"
+                                    if "L" in ls[i][j-1] or ("U" in ls[i][j-1] and ls[i][j-2] == "#"):
+                                        return True
+                                    ls[i][j-1] = ls[i][j-1] + "^"
                     break
             else:
                 continue
