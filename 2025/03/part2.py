@@ -6,6 +6,6 @@ def joltage(nums, count=12):
         return max(nums)
     index = nums.index(first := max(nums[:-count+1]))
     rest = joltage(nums[index+1:], count-1)
-    return first * 10**(count-1) + rest
+    return first * 10**(count-1) + rest 
 
 print(sum(map(joltage, lines)))
