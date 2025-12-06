@@ -5,7 +5,7 @@ with open("input.txt", "r", encoding="utf8") as f:
 
 final = 0
 for i, operation in enumerate(lines[-1]):
-    nums = tuple(map(int, [row[i] for row in lines[:-1]]))
+    nums = [int(row[i]) for row in lines[:-1]]
     final += sum(nums) if operation == "+" else prod(nums)
 
 print(final)

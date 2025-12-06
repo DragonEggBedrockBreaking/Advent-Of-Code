@@ -19,13 +19,11 @@ def calc(secs, operation):
 
 it, total = 0, 0
 for i, (op, count) in enumerate(ops_data):
-    if i < len(ops_data) - 1:
-        sections = [x[it:it+count] for x in lines]
-        it += count + 1
-        total += calc(sections, op)
-    else:
+    if i == len(ops_data) - 1:
         sections = [x[it:] for x in lines]
-        total += calc(sections, op)
-        break
+    else:
+        sections = [x[it:it+count] for x in lines]
+    it += count + 1
+    total += calc(sections, op)
 
 print(total)
