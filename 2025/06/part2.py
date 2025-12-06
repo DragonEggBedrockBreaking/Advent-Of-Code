@@ -1,3 +1,5 @@
+from math import prod
+
 with open("input.txt", "r", encoding="utf8") as f:
     lines = f.read().splitlines()
 ops = lines.pop()
@@ -10,17 +12,9 @@ for char in ops:
 
 
 def calc(secs, operation):
-    items = []
-    for j in range(len(secs[0])-1, -1, -1):
-        items.append("".join([x[j] for x in secs if x[j].isnumeric()]))
-    items = [int(x) for x in items if x.isnumeric()]
-    final = 0 if operation == "+" else 1
-    for item in items:
-        if operation == "+":
-            final += int(item)
-        else:
-            final *= int(item)
-    return final
+    items = ["".join([x[j] for x in secs if x[j].isnumeric()]) for j in range(len(secs[0])-1, -1, -1)]
+    nums = [int(x) for x in items if x.isnumeric()]
+    return sum(nums) if operation == "+" else prod(nums)
 
 
 it, total = 0, 0
