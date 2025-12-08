@@ -30,7 +30,6 @@ G.add_nodes_from(lines)
 G.add_weighted_edges_from([(node1, node2, distance(node1, node2)) for (node1, node2) in itertools.combinations(lines, 2)])
 
 while len(G.nodes) > 2:
-    print(len(G.nodes))
     merge(min(nx.get_edge_attributes(G, "weight").items(), key=lambda entry: entry[1])[0])
 first, second = tuple(G.edges)[0]
 final1, final2 = min(itertools.product(first.split("+"), second.split("+")), key=lambda nodes: distance(nodes[0], nodes[1]))
